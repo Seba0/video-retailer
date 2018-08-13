@@ -1,13 +1,15 @@
 package com.sda.video.clients;
 
+import com.sda.video.datastore.CSVStorable;
+
 import java.util.Objects;
 
-public class Clients {
+public class Clients implements CSVStorable {
 
+    private int id;
     private String name;
     private String surname;
     private String tele;
-    private int id;
 
     public String getName() {
         return name;
@@ -55,19 +57,40 @@ public class Clients {
     @Override
     public int hashCode() {
 
-        return Objects.hash(name, surname, tele, id);
+        return Objects.hash(id, name, surname, tele);
     }
 
     @Override
     public String toString() {
         return "Clients{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", tele='" + tele + '\'' +
-                ", id=" + id +
                 '}';
     }
 
 
+    @Override
+    public String[] writeRow() {
+        return new String[]{
+                Integer.toString(id),
+                name,
+                surname,
+                tele
+        };
+    }
 
+    @Override
+    public void readRow(String[] cells) {
+        id = Integer.parseInt(cells[0]);
+        name = cells[1];
+        surname = cells[2];
+        tele = cells[3];
+    }
+
+    @Override
+    public Clients newInstance() {
+        return new Clients();
+    }
 }

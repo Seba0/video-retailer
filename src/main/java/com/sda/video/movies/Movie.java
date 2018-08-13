@@ -1,5 +1,7 @@
 package com.sda.video.movies;
 
+import com.sda.video.datastore.CSVDataStore;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -75,7 +77,6 @@ public class Movie {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(id, title, director, yearProduction, gener, rentedDate);
     }
 

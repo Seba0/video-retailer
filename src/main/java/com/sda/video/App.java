@@ -1,6 +1,6 @@
 package com.sda.video;
 
-import com.sda.video.clients.ClientList;
+import com.sda.video.clients.ClientManager;
 
 /**
  * Hello world!
@@ -8,7 +8,7 @@ import com.sda.video.clients.ClientList;
  */
 public class App 
 {
-    ClientList clientList = ClientList.INSTANCE;
+    ClientManager clientManager = ClientManager.INSTANCE;
 
 
     public static void main( String[] args )
