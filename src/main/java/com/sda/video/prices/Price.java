@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Price {
     private int id;
     private Date date;
-    private double price;
+    private PriceList price;
     private Movie movie;
 
     @Override
@@ -27,14 +27,13 @@ public class Price {
         if (o == null || getClass() != o.getClass()) return false;
         Price price1 = (Price) o;
         return id == price1.id &&
-                Double.compare(price1.price, price) == 0 &&
                 Objects.equals(date, price1.date) &&
+                price == price1.price &&
                 Objects.equals(movie, price1.movie);
     }
 
     @Override
     public int hashCode() {
-
         return Objects.hash(id, date, price, movie);
     }
 
@@ -55,11 +54,11 @@ public class Price {
         this.date = date;
     }
 
-    public double getPrice() {
+    public PriceList getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(PriceList price) {
         this.price = price;
     }
 

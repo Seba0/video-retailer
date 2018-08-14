@@ -32,10 +32,10 @@ public enum MovieManager {
             // Get store
             CSVDataStore<Movie> store = getStore();
 
-            // Read all clients
+            // Read all movies
             Set<Movie> movies = store.read();
 
-            //Add all clients to list of clients
+            //Add all movies to list of movies
             for (Movie movie : movies) {
                 movieList.add(movie);
             }
@@ -45,14 +45,14 @@ public enum MovieManager {
     }
 
     /**
-     * Save Clients data to store
+     * Save Movie data to store
      */
     private void save() {
         try {
             // Get store
             CSVDataStore<Movie> store = getStore();
 
-            // Write all clients
+            // Write all movies
             store.write(movieList);
 
         } catch (IOException e) {
@@ -68,13 +68,57 @@ public enum MovieManager {
     private static CSVDataStore<Movie> getStore() {
         // Check if store is not created
         if (store == null) {
-            // Select file for data stroe of Clients
+            // Select file for data store of Movie
             File file = new File("movies.csv");
 
-            // Create new Client store
+            // Create new Movie store
             store = new CSVDataStore<Movie>(file, new Movie());
         }
         // Return store
         return store;
+    }
+
+    /**
+     * Add Movie to movieList
+     */
+    public void addMovie(Movie movie){
+        movieList.add(movie);
+    }
+
+    /**
+     * Remove Movie from movieList
+     */
+    public void removeMovie(Movie movie){
+        movieList.remove(movie);
+    }
+
+    /**
+     * Searches and returns movies according to given parameters
+     *
+     * each of the following parameters can be null:
+     * @param title
+     * @param director
+     * @param yearProduction
+     * @param gener
+     *
+     * @return the list of found movies
+     */
+    public Set<Movie> searchMovie(String title, String director, int yearProduction, Gener gener){
+        Set<Movie> searchMovie = new HashSet<>();
+        for (Movie list : movieList){
+            if (title.equals(list.getTitle())){
+                searchMovie.add(list);
+            }
+            if (director.equals(list.getDirector())){
+                searchMovie.add(list);
+            }
+            if (yearProduction == list.getYearProduction()){
+                searchMovie.add(list);
+            }
+            if (gener.equals(list.getGener())){
+                searchMovie.add(list);
+            }
+        }
+        return searchMovie;
     }
 }

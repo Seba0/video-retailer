@@ -1,6 +1,7 @@
 package com.sda.video;
 
 import com.sda.video.clients.ClientManager;
+import com.sda.video.movies.Movie;
 import com.sda.video.movies.MovieManager;
 
 /**
