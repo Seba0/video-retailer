@@ -1,6 +1,7 @@
 package com.sda.video;
 
 import com.sda.video.clients.ClientManager;
+import com.sda.video.movies.MovieManager;
 
 /**
  * Hello world!
@@ -9,6 +10,7 @@ import com.sda.video.clients.ClientManager;
 public class App 
 {
     ClientManager clientManager = ClientManager.INSTANCE;
+    MovieManager movieManager = MovieManager.INSTANCE;
 
 
     public static void main( String[] args )
