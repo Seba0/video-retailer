@@ -4,9 +4,8 @@ import com.sda.video.datastore.CSVStorable;
 
 import java.util.Objects;
 
-public class Clients implements CSVStorable {
+public class Clients extends CSVStorable {
 
-    private int id;
     private String name;
     private String surname;
     private String tele;
@@ -35,21 +34,12 @@ public class Clients implements CSVStorable {
         this.tele = tele;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Clients clients = (Clients) o;
-        return id == clients.id &&
-                Objects.equals(name, clients.name) &&
+        return Objects.equals(name, clients.name) &&
                 Objects.equals(surname, clients.surname) &&
                 Objects.equals(tele, clients.tele);
     }
@@ -57,13 +47,13 @@ public class Clients implements CSVStorable {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, name, surname, tele);
+        return Objects.hash(getId(), name, surname, tele);
     }
 
     @Override
     public String toString() {
         return "Clients{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", tele='" + tele + '\'' +
@@ -74,7 +64,6 @@ public class Clients implements CSVStorable {
     @Override
     public String[] writeRow() {
         return new String[]{
-                Integer.toString(id),
                 name,
                 surname,
                 tele
@@ -83,10 +72,9 @@ public class Clients implements CSVStorable {
 
     @Override
     public void readRow(String[] cells) {
-        id = Integer.parseInt(cells[0]);
-        name = cells[1];
-        surname = cells[2];
-        tele = cells[3];
+        name = cells[0];
+        surname = cells[1];
+        tele = cells[2];
     }
 
     @Override

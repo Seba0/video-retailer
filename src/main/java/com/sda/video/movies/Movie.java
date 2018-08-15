@@ -1,25 +1,17 @@
 package com.sda.video.movies;
 
 import com.sda.video.datastore.CSVStorable;
+
 import java.util.Date;
 import java.util.Objects;
 
-public class Movie implements CSVStorable {
+public class Movie extends CSVStorable {
 
-    private int id;
     private String title;
     private String director;
     private int yearProduction;
     private Gener gener;
     private Date rentedDate;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
@@ -66,8 +58,7 @@ public class Movie implements CSVStorable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Movie movie = (Movie) o;
-        return id == movie.id &&
-                yearProduction == movie.yearProduction &&
+        return yearProduction == movie.yearProduction &&
                 Objects.equals(title, movie.title) &&
                 Objects.equals(director, movie.director) &&
                 gener == movie.gener &&
@@ -76,7 +67,7 @@ public class Movie implements CSVStorable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, director, yearProduction, gener, rentedDate);
+        return Objects.hash(getId(), title, director, yearProduction, gener, rentedDate);
     }
 
     public boolean isRent() {
@@ -86,7 +77,7 @@ public class Movie implements CSVStorable {
     @Override
     public String toString() {
         return "Movie{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", title='" + title + '\'' +
                 ", director='" + director + '\'' +
                 ", yearProduction=" + yearProduction +
@@ -98,11 +89,10 @@ public class Movie implements CSVStorable {
     @Override
     public String[] writeRow() {
         String date = "";
-        if(rentedDate != null) {
+        if (rentedDate != null) {
             date = Long.toString(rentedDate.getTime());
         }
         return new String[]{
-                Integer.toString(id),
                 title,
                 director,
                 Integer.toString(yearProduction),
@@ -113,15 +103,14 @@ public class Movie implements CSVStorable {
 
     @Override
     public void readRow(String[] cells) {
-        id = Integer.parseInt(cells[0]);
-        title = cells[1];
-        director = cells[2];
-        yearProduction = Integer.parseInt(cells[3]);
-        gener = Gener.valueOf(cells[4]);
-        if(cells[5].isEmpty()) {
+        title = cells[0];
+        director = cells[1];
+        yearProduction = Integer.parseInt(cells[2]);
+        gener = Gener.valueOf(cells[3]);
+        if (cells[4].isEmpty()) {
             rentedDate = null;
-        } else{
-            rentedDate = new Date(Long.parseLong(cells[5]));
+        } else {
+            rentedDate = new Date(Long.parseLong(cells[4]));
         }
     }
 
