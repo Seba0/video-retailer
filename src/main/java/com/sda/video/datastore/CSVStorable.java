@@ -32,19 +32,19 @@ public abstract class CSVStorable {
      *
      * @return array of row cells
      */
-    abstract String[] writeRow();
+    public abstract String[] writeRow();
 
     /**
      * The object implements the readRow method to restore its contents by parsing row cells
      *
      * @param cells array of row cells
      */
-    abstract void readRow(String[] cells);
+    public abstract void readRow(String[] cells);
 
     /**
      * Create new object
      *
      * @return new instance of this object
      */
-    abstract CSVStorable newInstance();
+    public abstract CSVStorable newInstance();
 }
