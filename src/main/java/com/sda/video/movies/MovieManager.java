@@ -25,7 +25,7 @@ public enum MovieManager {
     }
 
     /**
-     * Load Clients data from store
+     * Load Client data from store
      */
     private void load() {
         try {

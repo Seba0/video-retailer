@@ -4,7 +4,7 @@ import com.sda.video.datastore.CSVStorable;
 
 import java.util.Objects;
 
-public class Clients extends CSVStorable {
+public class Client extends CSVStorable {
 
     private String name;
     private String surname;
@@ -38,10 +38,10 @@ public class Clients extends CSVStorable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Clients clients = (Clients) o;
-        return Objects.equals(name, clients.name) &&
-                Objects.equals(surname, clients.surname) &&
-                Objects.equals(tele, clients.tele);
+        Client client = (Client) o;
+        return Objects.equals(name, client.name) &&
+                Objects.equals(surname, client.surname) &&
+                Objects.equals(tele, client.tele);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class Clients extends CSVStorable {
 
     @Override
     public String toString() {
-        return "Clients{" +
+        return "Client{" +
                 "id=" + getId() +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
@@ -78,7 +78,7 @@ public class Clients extends CSVStorable {
     }
 
     @Override
-    public Clients newInstance() {
-        return new Clients();
+    public Client newInstance() {
+        return new Client();
     }
 }
